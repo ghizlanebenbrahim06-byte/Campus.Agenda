@@ -1,0 +1,25 @@
+import { Evenement } from './types';
+
+export const evenements: Evenement[] = [
+  { id: 'E01', titre: 'Atelier React', categorie: 'Atelier', capacite: 25, inscrits: 25 },
+  { id: 'E02', titre: 'Conférence IA', categorie: 'Conférence', capacite: 70, inscrits: 52 },
+  { id: 'E03', titre: 'Sécurité mobile', categorie: 'Atelier', capacite: 20, inscrits: 17 },
+  { id: 'E04', titre: 'Design UI', categorie: 'Atelier', capacite: 18, inscrits: 9 },
+  { id: 'E05', titre: 'Forum projets', categorie: 'Rencontre', capacite: 50, inscrits: 49 },
+  { id: 'E06', titre: 'Découverte Git', categorie: 'Atelier', capacite: 24, inscrits: 24 },
+];
+ 
+
+export const mode: 'tous' | 'ateliers' = 'tous';
+
+export const placesRestantes = (e: Evenement): number => {
+  const r = e.capacite - e.inscrits;
+  return r > 0 ? r : 0;
+};
+
+export const statutEvenement = (e: Evenement): string => {
+  const r = placesRestantes(e);
+  if (r === 0) return 'Complet';
+  if (r <= 3) return 'Presque complet';
+  return 'Ouvert';
+};
